@@ -12,7 +12,8 @@ var elixir = require('laravel-elixir');
  */
 var paths = {
     jquery: './node_modules/jquery/',
-    bootstrap: './node_modules/bootstrap-sass/assets/'
+    bootstrap: './node_modules/bootstrap-sass/assets/',
+    font_awesome: './node_modules/font-awesome/'
 };
 elixir.config.sourcemaps = false;
 elixir(function(mix) {
@@ -23,7 +24,10 @@ elixir(function(mix) {
         ], 'public/js/app.js')
         .scripts('custom.js', 'public/js/custom.js')
         .copy(paths.bootstrap + 'fonts/bootstrap/**', 'public/fonts/bootstrap')
+        .copy(paths.font_awesome + 'fonts/**', 'public/fonts/')
+        .styles(paths.font_awesome + 'css/font-awesome.css', 'public/css/font-awesome.css')
         .styles([
             'styles.css'
         ], 'public/css/styles.css');
+
 });

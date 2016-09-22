@@ -3,7 +3,8 @@
         <div class="col-md-4">
             <!-- Logo -->
             <div class="logo">
-                <h1><a href="/">{{ trans('layout.header_title') }}</a></h1>
+                <img src="{{ asset('img/logo.png') }}" class="logo-img" alt="">
+                <h1><a href="/" style="margin-left: 70px;">{{ trans('layout.header_title') }}</a></h1>
             </div>
         </div>
         <div class="col-md-5">
@@ -24,17 +25,18 @@
                     <ul class="nav navbar-nav">
                         @if (Auth::user())
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->username }} <b class="caret"></b></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }} <b class="caret"></b></a>
                                 <ul class="dropdown-menu animated fadeInUp">
-                                    <li><a href="#">{{ trans('user.logout') }}</a></li>
+                                    <li><a href="{{ action('Auth\AuthController@logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i>
+                                            {{ trans('user.logout') }}</a></li>
                                 </ul>
                             </li>
                         @else
                             <li class="dropdown">
-                                <a href="#">{{ trans('user.login') }}</a>
+                                <a href="{{ action('Auth\AuthController@showLoginForm') }}">{{ trans('user.login') }}</a>
                             </li>
                             <li class="dropdown">
-                                <a href="#">{{ trans('user.register') }}</a>
+                                <a href="{{ action('Auth\AuthController@showRegistrationForm') }}">{{ trans('user.register') }}</a>
                             </li>
                         @endif
                     </ul>

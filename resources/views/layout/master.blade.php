@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         {{ Html::style('css/app.css') }}
         {{ Html::style('css/styles.css') }}
+        {{ Html::style('css/font-awesome.css') }}
     </head>
     <body>
         <div class="header">
