@@ -33,4 +33,8 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Models\User', 'relationships', 'follower_id', 'followed_id');
     }
+    public function isAdmin()
+    {
+        return $this->role == config('user.role.admin');
+    }
 }
