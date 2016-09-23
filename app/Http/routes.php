@@ -18,4 +18,5 @@ Route::group(['middleware' => 'auth'], function () {
 });
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admin', ], function (){
     Route::get('/','AdminController@index');
+    Route::resource('categories', 'CategoryController');
 });
