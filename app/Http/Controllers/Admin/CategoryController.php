@@ -43,4 +43,31 @@ class CategoryController extends Controller
         
         return view('admin.category.index', compact('categories'));
     }
+    
+    public function edit($id)
+    {
+        $category = $this->categoryRepository->find($id);
+        $parentCategories = $this->categoryRepository->whereNull('parent_id')->lists('name', 'id');
+        
+        return view('admin.category.edit', compact('category', 'parentCategories'));
+    }
+    
+    public function update(CategoryRequest $request, $id)
+    {
+        $category = $this->categoryRepository->update([
+            'name' => $request->name,
+            'parent_id' => $request->parent_id ?: null,
+        ], $id);
+        if ($category) {
+            return redirect()->route('admin.categories.index')->with([
+                'status' => 'success',
+                'message' => trans('messages.admin.categories.edit.success')
+            ]);
+        }
+        
+        return redirect()->back()->with([
+            'status' => 'danger',
+            'message' => trans('messages.admin.categories.edit.failed')
+        ]);
+    }
 }
