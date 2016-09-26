@@ -14,7 +14,8 @@ class Category extends Model
     ];
 
     protected $appends = [
-        'lessons_count'
+        'lessons_count',
+        'list_lessons',
     ];
 
     public function lessons()
@@ -35,6 +36,22 @@ class Category extends Model
     public function getLessonsCountAttribute()
     {
         return $this->countLessons($this);
+    }
+    
+    public function getListLessonsAttribute()
+    {
+        if (!$this->parent_id) {
+            $lessons = collect();
+            foreach ($this->childcategories as $childcategory) {
+                foreach ($childcategory->lessons as $lesson) {
+                    $lessons->push($lesson);
+                }
+            }
+            
+            return $lessons;
+        }
+        
+        return $this->lessons;
     }
     
     private function countLessons($category)
