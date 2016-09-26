@@ -21,7 +21,8 @@ class CategoryRequest extends Request
     public function rules()
     {
         return [
-            'name' => 'required'
+            'name' => 'required',
+            'parent_id' => 'exists:categories'
         ];
     }
 }

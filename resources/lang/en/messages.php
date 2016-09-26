@@ -3,7 +3,8 @@ return [
     'admin' => [
         'categories' => [
             'add' => [
-                'success' => 'Add category success!'
+                'success' => 'Add category success!',
+                'failed' => 'Add category failed!'
             ],
             'edit' => [
                 'success' => 'Update category success!',
