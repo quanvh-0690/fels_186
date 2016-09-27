@@ -14,7 +14,7 @@
                 </a>
                 <!-- Sub menu -->
                 <ul>
-                    <li><a href="#"><i class="fa fa-plus"></i> {{ trans('layout.sidebar.add_category') }}</a></li>
+                    <li><a href="{{ route('admin.categories.create') }}"><i class="fa fa-plus"></i> {{ trans('layout.sidebar.add_category') }}</a></li>
                     <li><a href="#"><i class="fa fa-list-alt"></i> {{ trans('layout.sidebar.list_categories') }}</a></li>
                 </ul>
             </li>
