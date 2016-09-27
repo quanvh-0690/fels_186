@@ -28,5 +28,6 @@
         </footer>
         {{ Html::script('js/app.js') }}
         {{ Html::script('js/custom.js') }}
+        @yield('script')
     </body>
 </html>

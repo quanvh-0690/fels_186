@@ -23,6 +23,7 @@ elixir(function(mix) {
             paths.bootstrap + 'javascripts/bootstrap.js'
         ], 'public/js/app.js')
         .scripts('custom.js', 'public/js/custom.js')
+        .scripts('admin_categories.js', 'public/js/admin_categories.js')
         .copy(paths.bootstrap + 'fonts/bootstrap/**', 'public/fonts/bootstrap')
         .copy(paths.font_awesome + 'fonts/**', 'public/fonts/')
         .styles(paths.font_awesome + 'css/font-awesome.css', 'public/css/font-awesome.css')

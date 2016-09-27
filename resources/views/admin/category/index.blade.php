@@ -40,6 +40,7 @@
                         <div class="text-right">
                             {{ $categories->render() }}
                         </div>
+                        @include('common.modal_delete')
                     @else
                         <div class="alert">{{ trans('category.no_results') }}</div>
                     @endif
@@ -47,4 +48,8 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    {{ Html::script('/js/admin_categories.js') }}
 @endsection

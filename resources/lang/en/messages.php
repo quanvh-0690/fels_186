@@ -11,7 +11,8 @@ return [
                 'failed' => 'Update category failed!',
             ],
             'delete' => [
-                'success' => 'Delete category success!'
+                'success' => 'Delete category success!',
+                'failed' => 'Delete category failed!'
             ]
         ]
     ],
