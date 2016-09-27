@@ -42,6 +42,7 @@
                         <div class="text-right">
                             {{ $lessons->render() }}
                         </div>
+                        @include('common.modal_delete')
                     @else
                         <div class="alert">{{ trans('lesson.no_results') }}</div>
                     @endif

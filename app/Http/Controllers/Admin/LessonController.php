@@ -67,7 +67,86 @@ class LessonController extends Controller
             'message' => trans('messages.admin.lessons.add.failed')
         ]);
     }
-
+    
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $lesson = $this->lessonRepository->find($id);
+        if ($lesson) {
+            return view('admin.lesson.show', compact('lesson'));
+        }
+    
+        return redirect()->route('admin.lessons.index')->with([
+            'status' => 'danger',
+            'message' => trans('messages.admin.lessons.show.not_found')
+        ]);
+    }
+    
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $lesson = $this->lessonRepository->find($id);
+        if ($lesson) {
+            $categories = $this->getCategoriesForSelectbox();
+            
+            return view('admin.lesson.edit', compact('lesson', 'categories'));
+        }
+        
+        return redirect()->back()->with([
+            'status' => 'danger',
+            'message' => trans('messages.admin.lessons.edit.not_found')
+        ]);
+    }
+    
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $params = $request->only('name', 'category_id', 'description');
+        $lesson = $this->lessonRepository->update($params, $id);
+        if ($lesson) {
+            return redirect()->route('admin.lessons.index')->with([
+                'status' => 'success',
+                'message' => trans('messages.admin.lessons.edit.success')
+            ]);
+        }
+    
+        return redirect()->back()->with([
+            'status' => 'danger',
+            'message' => trans('messages.admin.lessons.edit.failed')
+        ]);
+    }
+    
+    public function destroy($id)
+    {
+        if ($this->lessonRepository->delete($id)) {
+            return redirect()->route('admin.lessons.index')->with([
+                'status' => 'success',
+                'message' => trans('messages.admin.lessons.delete.success')
+            ]);
+        }
+        
+        return redirect()->back()->with([
+            'status' => 'danger',
+            'message' => trans('messages.admin.lessons.delete.failed')
+        ]);
+    }
+    
     private function getCategoriesForSelectbox()
     {
         $parentCategories = $this->categoryRepository->whereNull('parent_id')->get();
