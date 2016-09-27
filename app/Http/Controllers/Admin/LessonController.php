@@ -67,7 +67,7 @@ class LessonController extends Controller
             'message' => trans('messages.admin.lessons.add.failed')
         ]);
     }
-    
+
     private function getCategoriesForSelectbox()
     {
         $parentCategories = $this->categoryRepository->whereNull('parent_id')->get();
