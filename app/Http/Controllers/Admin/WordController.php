@@ -104,6 +104,7 @@ class WordController extends Controller
     
     private function searchByLesson($keyword)
     {
+
         $condition = $keyword ?: "%$keyword%";
         $words = $this->wordRepository->whereHas('lesson', function($query) use ($condition) {
             $query->where('name', 'LIKE', $condition);
