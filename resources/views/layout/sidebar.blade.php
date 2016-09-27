@@ -20,6 +20,17 @@
             </li>
             <li class="submenu">
                 <a href="#">
+                    <i class="fa fa-book"></i> {{ trans('layout.sidebar.lessons') }}
+                    <span class="caret pull-right"></span>
+                </a>
+                <!-- Sub menu -->
+                <ul>
+                    <li><a href="{{ route('admin.lessons.create') }}"><i class="fa fa-plus"></i> {{ trans('layout.sidebar.add_lesson') }}</a></li>
+                    <li><a href="{{ route('admin.lessons.index') }}"><i class="fa fa-list-alt"></i> {{ trans('layout.sidebar.list_lessons') }}</a></li>
+                </ul>
+            </li>
+            <li class="submenu">
+                <a href="#">
                     <i class="fa fa-user-md"></i> {{ trans('layout.sidebar.users') }}
                     <span class="caret pull-right"></span>
                 </a>
