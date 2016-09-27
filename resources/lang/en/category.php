@@ -10,5 +10,6 @@ return [
     'edit_category' => 'Edit Category',
     'category_name' => 'Category Name',
     'parent_category' => 'Parent Category',
-    'no_results' => 'No Results'
+    'no_results' => 'No Results',
+    'lessons_of_category' => 'List lessons of this category',
 ];

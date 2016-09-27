@@ -79,10 +79,23 @@ class CategoryController extends Controller
                 'message' => trans('messages.admin.categories.delete.success')
             ]);
         }
-        
+    
         return redirect()->back()->with([
             'status' => 'danger',
             'message' => trans('messages.admin.categories.delete.failed')
+        ]);
+    }
+    
+    public function show($id)
+    {
+        $category = $this->categoryRepository->find($id);
+        if ($category) {
+            return view('admin.category.show', compact('category'));
+        }
+        
+        return redirect()->route('admin.categories.index')->with([
+            'status' => 'danger',
+            'message' => trans('messages.admin.categories.show.not_found')
         ]);
     }
 }
