@@ -36,4 +36,11 @@ class CategoryController extends Controller
             'message' => trans('messages.admin.categories.add.failed')
         ]);
     }
+    
+    public function index()
+    {
+        $categories = $this->categoryRepository->paginate();
+        
+        return view('admin.category.index', compact('categories'));
+    }
 }
