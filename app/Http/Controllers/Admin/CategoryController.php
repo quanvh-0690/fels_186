@@ -70,4 +70,19 @@ class CategoryController extends Controller
             'message' => trans('messages.admin.categories.edit.failed')
         ]);
     }
+    
+    public function destroy($id)
+    {
+        if ($this->categoryRepository->delete($id)) {
+            return redirect()->route('admin.categories.index')->with([
+                'status' => 'success',
+                'message' => trans('messages.admin.categories.delete.success')
+            ]);
+        }
+        
+        return redirect()->back()->with([
+            'status' => 'danger',
+            'message' => trans('messages.admin.categories.delete.failed')
+        ]);
+    }
 }
