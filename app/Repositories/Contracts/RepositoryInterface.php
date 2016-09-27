@@ -48,4 +48,6 @@ interface RepositoryInterface {
     public function first($columns = ['*']);
     
     public function deleteAll();
+    
+    public function whereHas($relatedModel, $query);
 }

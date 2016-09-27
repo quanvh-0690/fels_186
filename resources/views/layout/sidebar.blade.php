@@ -31,6 +31,16 @@
             </li>
             <li class="submenu">
                 <a href="#">
+                    <i class="fa fa-font"></i> {{ trans('layout.sidebar.words') }}
+                    <span class="caret pull-right"></span>
+                </a>
+                <ul>
+                    <li><a href="{{ route('admin.words.create') }}"><i class="fa fa-plus"></i> {{ trans('layout.sidebar.add_word') }}</a></li>
+                    <li><a href="{{ route('admin.words.index') }}"><i class="fa fa-list-alt"></i> {{ trans('layout.sidebar.list_words') }}</a></li>
+                </ul>
+            </li>
+            <li class="submenu">
+                <a href="#">
                     <i class="fa fa-user-md"></i> {{ trans('layout.sidebar.users') }}
                     <span class="caret pull-right"></span>
                 </a>

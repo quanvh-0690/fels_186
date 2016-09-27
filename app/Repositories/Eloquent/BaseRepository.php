@@ -209,4 +209,11 @@ abstract class BaseRepository implements RepositoryInterface
         
         return $result;
     }
+    
+    public function whereHas($relatedModel, $query)
+    {
+        $this->model = $this->model->whereHas($relatedModel, $query);
+        
+        return $this;
+    }
 }
