@@ -33,4 +33,6 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
         'uses' => 'UserController@search',
     ]);
     Route::resource('users', 'UserController');
+    Route::resource('answers', 'AnswerController');
+
 });
