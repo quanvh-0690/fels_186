@@ -25,7 +25,7 @@ class AnswerRequest extends Request
     {
         return [
             'content' => 'required',
-            'lesson_id' => 'exists:lessons,id',
+            'word_id' => 'exists:words,id',
         ];
     }
 }

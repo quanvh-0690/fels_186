@@ -7,5 +7,8 @@ return [
     ],
     'user' => [
         'index_page_size' => 10,
+    ],
+    'answers' => [
+        'index_page_size' => 10,
     ]
 ];
