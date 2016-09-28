@@ -16,4 +16,5 @@ return [
     'answers_of_word' => 'All answers of this word',
     'no_results' => 'No results',
     'answer_not_available' => 'N/A',
+    'edit_word' => 'Edit word',
 ];

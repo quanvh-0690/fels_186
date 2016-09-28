@@ -6,7 +6,7 @@
             <li><a href=""><i class="glyphicon glyphicon-list-alt"></i> {{ trans('layout.sidebar.word_list') }}</a></li>
             <li><a href=""><i class="glyphicon glyphicon-pencil"></i> {{ trans('layout.sidebar.start_lesson') }}</a></li>
         @else
-            <li class="current"><a href=""><i class="fa fa-home"></i> {{ trans('layout.sidebar.home') }} </a></li>
+            <li><a href="{{ route('admin.home') }}"><i class="fa fa-home"></i> {{ trans('layout.sidebar.home') }} </a></li>
             <li class="submenu">
                 <a href="#">
                     <i class="fa fa-list"></i> {{ trans('layout.sidebar.categories') }}

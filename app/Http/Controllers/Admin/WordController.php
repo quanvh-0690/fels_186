@@ -82,9 +82,75 @@ class WordController extends Controller
         ]);
     }
     
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $lessons = $this->lessonRepository->lists('name', 'id');
+        $word = $this->wordRepository->find($id);
+        if ($word) {
+            return view('admin.word.edit', compact('word', 'lessons'));
+        }
+    
+        return redirect()->route('admin.words.index')->with([
+            'status' => 'danger',
+            'message' => trans('messages.admin.words.edit.not_found')
+        ]);
+    }
+    
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  WordRequest  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(WordRequest $request, $id)
+    {
+        $params = $request->only('content', 'lesson_id');
+        $word = $this->wordRepository->update($params, $id);
+        if ($word) {
+            return redirect()->route('admin.words.index')->with([
+                'status' => 'success',
+                'message' => trans('messages.admin.words.edit.success')
+            ]);
+        }
+    
+        return redirect()->back()->with([
+            'status' => 'danger',
+            'message' => trans('messages.admin.words.edit.failed')
+        ]);
+    }
+    
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        if ($this->wordRepository->delete($id)) {
+            return redirect()->route('admin.words.index')->with([
+                'status' => 'success',
+                'message' => trans('messages.admin.words.delete.success')
+            ]);
+        }
+    
+        return redirect()->back()->with([
+            'status' => 'danger',
+            'message' => trans('messages.admin.words.delete.failed')
+        ]);
+    }
+    
     public function search()
     {
         $params = request()->only('type', 'keyword');
+        $baseUrl = route('admin.words.index');
         switch ($params['type']) {
             case 'content':
                 $words = $this->searchByContent($params['keyword']);
@@ -94,7 +160,7 @@ class WordController extends Controller
                 break;
         }
         
-        return view('admin.word.index', ['words' => $words->appends($params)]);
+        return view('admin.word.index', ['words' => $words->appends($params), 'baseUrl' => $baseUrl]);
     }
     
     private function searchByContent($keyword)
@@ -104,7 +170,6 @@ class WordController extends Controller
     
     private function searchByLesson($keyword)
     {
-
         $condition = $keyword ?: "%$keyword%";
         $words = $this->wordRepository->whereHas('lesson', function($query) use ($condition) {
             $query->where('name', 'LIKE', $condition);

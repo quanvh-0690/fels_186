@@ -57,6 +57,7 @@
                         <div class="text-right">
                             {{ $words->render() }}
                         </div>
+                        @include('common.modal_delete')
                     @else
                         <div class="alert alert-warning">{{ trans('word.no_results') }}</div>
                     @endif
