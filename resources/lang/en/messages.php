@@ -72,5 +72,25 @@ return [
                 'not_found' => 'This user does not exist!',
             ],
         ],
+        'answers' => [
+            'add' => [
+                'success' => 'Add answer success!',
+                'failed' => 'Add answer failed!',
+                'exceed_number' => 'You can not add more answer. Enough :total answers.',
+                'must_have_correct' => 'Must have least one answer correctly!',
+            ],
+            'edit' => [
+                'success' => 'Update answer success!',
+                'failed' => 'Update answer failed!',
+                'not_found' => 'This answer does not exist!',
+            ],
+            'delete' => [
+                'success' => 'Delete answer success!',
+                'failed' => 'Delete answer failed!',
+            ],
+            'show' => [
+                'not_found' => 'This answer does not exist!',
+            ],
+        ],
     ],
 ];

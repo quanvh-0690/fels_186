@@ -17,4 +17,6 @@ return [
     'no_results' => 'No results',
     'answer_not_available' => 'N/A',
     'edit_word' => 'Edit word',
+    'add_answer' => 'Add new answer for this word',
+    'add_more_answer' => 'Add and continue'
 ];

@@ -43,9 +43,9 @@
                                         <td>{{ $word->id }}</td>
                                         <td>{{ $word->content }}</td>
                                         <td>{{ $word->lesson->name or '' }}</td>
-                                        <td>{{ $word->correct_answer }}</td>
+                                        <td><p>{{ implode(' | ', $word->correct_answers->lists('content')->toArray()) }}</p></td>
                                         <td>
-                                            <button class="btn btn-success btn-sm"><i class="fa fa-plus"></i> {{ trans('layout.actions.add', ['name' => 'Lesson']) }}</button>
+                                            <a href="{{ route('admin.words.answers.create', $word->id) }}" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> {{ trans('layout.actions.add', ['name' => 'Answer']) }}</a>
                                             <a href="{{ route('admin.words.show', $word->id) }}" class="btn btn-warning btn-sm"><i class="glyphicon glyphicon-eye-open"></i> {{ trans('layout.actions.view') }}</a>
                                             <a href="{{ route('admin.words.edit', $word->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i> {{ trans('layout.actions.edit') }}</a>
                                             <button class="btn btn-danger btn-sm btn-delete" data-id="{{ $word->id }}"><i class="fa fa-trash-o"></i> {{ trans('layout.actions.delete') }}</button>
