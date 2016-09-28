@@ -26,6 +26,7 @@ return [
             'edit' => [
                 'success' => 'Update lesson success!',
                 'failed' => 'Update lesson failed!',
+                'not_found' => 'This lesson does not exist!',
             ],
             'delete' => [
                 'success' => 'Delete lesson success!',

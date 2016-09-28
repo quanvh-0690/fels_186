@@ -9,4 +9,12 @@ return [
     'total_words' => 'Total words',
     'category' => 'Category',
     'list' => 'All Lessons',
+    'details' => 'Lesson Details',
+    'words_of_lesson' => 'All words in this lesson',
+    'word' => [
+        'id' => 'Id',
+        'content' => 'Content',
+        'correct_answer' => 'Correct Answer',
+    ],
+    'edit_lesson' => 'Edit Lesson',
 ];
