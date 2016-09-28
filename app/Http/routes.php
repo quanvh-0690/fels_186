@@ -20,4 +20,5 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
     Route::get('/','AdminController@index');
     Route::resource('categories', 'CategoryController');
     Route::resource('lessons', 'LessonController');
+    Route::resource('answers', 'AnswerController');
 });
