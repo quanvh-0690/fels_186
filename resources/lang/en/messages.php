@@ -16,7 +16,24 @@ return [
             ],
             'show' => [
                 'not_found' => 'This category does not exist!',
-            ]
+            ],
+        ],
+        'lessons' => [
+            'add' => [
+                'success' => 'Add lesson success!',
+                'failed' => 'Add lesson failed!',
+            ],
+            'edit' => [
+                'success' => 'Update lesson success!',
+                'failed' => 'Update lesson failed!',
+            ],
+            'delete' => [
+                'success' => 'Delete lesson success!',
+                'failed' => 'Delete lesson failed!',
+            ],
+            'show' => [
+                'not_found' => 'This lesson does not exist!',
+            ],
         ],
     ],
 ];

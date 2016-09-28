@@ -12,6 +12,9 @@ return [
         'add_category' => 'Add Category',
         'add_user' => 'Add User',
         'list_users' => 'List Users',
+        'lessons' => 'Lessons Management',
+        'add_lesson' => 'Add Lesson',
+        'list_lessons' => 'List Lessons',
     ],
     'actions' => [
         'title' => 'Actions',

@@ -17,4 +17,9 @@ class Lesson extends Model {
     {
         return $this->belongsTo('App\Models\Category', 'category_id');
     }
+    
+    public function words()
+    {
+        return $this->hasMany('App\Models\Word', 'lesson_id');
+    }
 }

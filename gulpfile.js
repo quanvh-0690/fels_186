@@ -24,6 +24,7 @@ elixir(function(mix) {
         ], 'public/js/app.js')
         .scripts('custom.js', 'public/js/custom.js')
         .scripts('admin_categories.js', 'public/js/admin_categories.js')
+        .scripts('admin_lessons.js', 'public/js/admin_lessons.js')
         .copy(paths.bootstrap + 'fonts/bootstrap/**', 'public/fonts/bootstrap')
         .copy(paths.font_awesome + 'fonts/**', 'public/fonts/')
         .styles(paths.font_awesome + 'css/font-awesome.css', 'public/css/font-awesome.css')
