@@ -44,6 +44,7 @@ return [
             'edit' => [
                 'success' => 'Update word success!',
                 'failed' => 'Update word failed!',
+                'not_found' => 'This word does not exist!',
             ],
             'delete' => [
                 'success' => 'Delete word success!',

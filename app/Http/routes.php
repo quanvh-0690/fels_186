@@ -17,7 +17,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/', 'HomeController@index');
 });
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admin', ], function (){
-    Route::get('/','AdminController@index');
+    Route::get('/',[
+        'as' => 'admin.home',
+        'uses' => 'AdminController@index',
+    ]);
     Route::resource('categories', 'CategoryController');
     Route::resource('lessons', 'LessonController');
     Route::get('words/search', [
