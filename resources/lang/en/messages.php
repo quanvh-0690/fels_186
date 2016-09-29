@@ -54,5 +54,23 @@ return [
                 'not_found' => 'This word does not exist!',
             ],
         ],
+        'users' => [
+            'add' => [
+                'success' => 'Add user success!',
+                'failed' => 'Add user failed!',
+            ],
+            'edit' => [
+                'success' => 'Update user success!',
+                'failed' => 'Update user failed!',
+                'not_found' => 'This user does not exist!',
+            ],
+            'delete' => [
+                'success' => 'Delete user success!',
+                'failed' => 'Delete user failed!',
+            ],
+            'show' => [
+                'not_found' => 'This user does not exist!',
+            ],
+        ],
     ],
 ];

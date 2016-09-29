@@ -46,8 +46,8 @@
                 </a>
                 <!-- Sub menu -->
                 <ul>
-                    <li><a href="#"><i class="fa fa-user-plus"></i> {{ trans('layout.sidebar.add_user') }}</a></li>
-                    <li><a href="#"><i class="fa fa-users"></i> {{ trans('layout.sidebar.list_users') }}</a></li>
+                    <li><a href="{{ route('admin.users.create') }}"><i class="fa fa-user-plus"></i> {{ trans('layout.sidebar.add_user') }}</a></li>
+                    <li><a href="{{ route('admin.users.index') }}"><i class="fa fa-users"></i> {{ trans('layout.sidebar.list_users') }}</a></li>
                 </ul>
             </li>
         @endif
