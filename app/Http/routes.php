@@ -28,4 +28,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
         'uses' => 'WordController@search',
     ]);
     Route::resource('words', 'WordController');
+    Route::get('users/search', [
+        'as' => 'admin.users.search',
+        'uses' => 'UserController@search',
+    ]);
+    Route::resource('users', 'UserController');
 });
