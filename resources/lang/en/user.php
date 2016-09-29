@@ -31,4 +31,10 @@ return [
     'add_user' => 'Add User',
     'password' => 'Password',
     'password_confirmation' => 'Confirm Password',
+    'edit_user' => 'Edit User',
+    'followers' => 'Followers',
+    'following' => 'Following',
+    'total_lessons_learned' => 'Total Lessons Learned',
+    'details' => 'User Details',
+    'activity' => 'Activity',
 ];

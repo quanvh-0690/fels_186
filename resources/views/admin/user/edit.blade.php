@@ -4,10 +4,10 @@
     <div class="row">
         <div class="col-md-offset-3 col-md-6">
             <div class="content-box-header">
-                <div class="panel-title">{{ trans('user.add_user') }}</div>
+                <div class="panel-title">{{ trans('user.edit_user') }}</div>
             </div>
             <div class="content-box-large box-with-header">
-                {{ Form::open(['route' => 'admin.users.store', 'class' => 'form-horizontal', 'role' => 'form']) }}
+                {{ Form::model($user, ['route' => ['admin.users.update', $user->id] , 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'PATCH']) }}
                     <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                         {{ Form::label('name', trans('user.name'), ['class' => 'col-sm-3 control-label']) }}
                         <div class="col-sm-9">
@@ -18,7 +18,7 @@
                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                         {{ Form::label('email', trans('user.email'), ['class' => 'col-sm-3 control-label']) }}
                         <div class="col-sm-9">
-                            {{ Form::text('email', null, ['placeholder' => trans('user.email'), 'class' => 'form-control', 'id' =>'email']) }}
+                            {{ Form::text('email', null, ['placeholder' => trans('user.email'), 'class' => 'form-control', 'id' =>'email', 'disabled']) }}
                             @include('common.block_error', ['field' => 'email'])
                         </div>
                     </div>
@@ -38,7 +38,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-9">
-                            <button class="btn btn-primary" type="submit">{{ trans('layout.actions.add_btn_title') }}</button>
+                            <button class="btn btn-primary" type="submit">{{ trans('layout.actions.edit') }}</button>
                         </div>
                     </div>
                 {{ Form::close() }}

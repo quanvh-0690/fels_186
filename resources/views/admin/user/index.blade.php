@@ -56,6 +56,7 @@
                         <div class="text-right">
                             {{ $users->render() }}
                         </div>
+                        @include('common.modal_delete')
                     @else
                         <div class="alert alert-warning">{{ trans('user.no_results') }}</div>
                     @endif
