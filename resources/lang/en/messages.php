@@ -36,5 +36,60 @@ return [
                 'not_found' => 'This lesson does not exist!',
             ],
         ],
+        'words' => [
+            'add' => [
+                'success' => 'Add word success!',
+                'failed' => 'Add word failed!',
+            ],
+            'edit' => [
+                'success' => 'Update word success!',
+                'failed' => 'Update word failed!',
+                'not_found' => 'This word does not exist!',
+            ],
+            'delete' => [
+                'success' => 'Delete word success!',
+                'failed' => 'Delete word failed!',
+            ],
+            'show' => [
+                'not_found' => 'This word does not exist!',
+            ],
+        ],
+        'users' => [
+            'add' => [
+                'success' => 'Add user success!',
+                'failed' => 'Add user failed!',
+            ],
+            'edit' => [
+                'success' => 'Update user success!',
+                'failed' => 'Update user failed!',
+                'not_found' => 'This user does not exist!',
+            ],
+            'delete' => [
+                'success' => 'Delete user success!',
+                'failed' => 'Delete user failed!',
+            ],
+            'show' => [
+                'not_found' => 'This user does not exist!',
+            ],
+        ],
+        'answers' => [
+            'add' => [
+                'success' => 'Add answer success!',
+                'failed' => 'Add answer failed!',
+                'exceed_number' => 'You can not add more answer. Enough 4 answers.',
+            ],
+            'edit' => [
+                'success' => 'Update answer success!',
+                'failed' => 'Update answer failed!',
+                'not_found' => 'This answer does not exist!',
+            ],
+            'delete' => [
+                'success' => 'Delete answer success!',
+                'failed' => 'Delete answer failed!',
+            ],
+            'show' => [
+                'not_found' => 'This answer does not exist!',
+            ],
+        ],
     ],
 ];

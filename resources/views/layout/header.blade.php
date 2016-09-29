@@ -7,19 +7,7 @@
                 <h1><a href="/" style="margin-left: 70px;">{{ trans('layout.header_title') }}</a></h1>
             </div>
         </div>
-        <div class="col-md-5">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="input-group form">
-                        <input type="text" class="form-control" placeholder="Search...">
-                        <span class="input-group-btn">
-                            <button class="btn btn-primary" type="button">{{ trans('layout.search') }}</button>
-                       </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
+        <div class="col-md-offset-5 col-md-3">
             <div class="navbar navbar-inverse" role="banner">
                 <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
                     <ul class="nav navbar-nav">

@@ -8,7 +8,7 @@
             <div class="modal-body">
                 <p>{{ trans('layout.actions.delete_modal.content') }}</p>
                 {{ Form::open(['method' => 'DELETE', 'id' => 'form-delete']) }}
-                    {{ Form::hidden('base_action', url()->current()) }}
+                    {{ Form::hidden('base_action', isset($baseUrl) ? $baseUrl : url()->current()) }}
                 {{ Form::close() }}
             </div>
             <div class="modal-footer">

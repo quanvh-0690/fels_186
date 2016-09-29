@@ -27,3 +27,8 @@ $('.btn-delete').click(function () {
 $('#btn-delete-yes').click(function () {
     $('#form-delete').submit();
 });
+
+$(function() {
+    var url = window.location.href;
+    $('.sidebar').find('a[href="' + url + '"]').parent('li').addClass('current').parents('li').addClass('open');
+});

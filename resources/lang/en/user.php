@@ -19,6 +19,16 @@ return [
     'password_label' => 'Password',
     'password_confirm_label' => 'Password confirm',
     'send_link_reset_button' => 'Send Password Reset Link',
-    'reset_password_button' => 'Reset Password'
-    
+    'reset_password_button' => 'Reset Password',
+    'id' => 'Id',
+    'name' => 'Name',
+    'email' => 'Email',
+    'avatar' => 'Avatar',
+    'placeholder_search' => 'Name or Email',
+    'list' => 'All Users',
+    'register_at' => 'Register At',
+    'no_results' => 'No Results',
+    'add_user' => 'Add User',
+    'password' => 'Password',
+    'password_confirmation' => 'Confirm Password',
 ];

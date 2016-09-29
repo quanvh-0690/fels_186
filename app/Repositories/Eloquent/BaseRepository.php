@@ -124,6 +124,8 @@ abstract class BaseRepository implements RepositoryInterface
                 $value3 = isset($value[2]) ? $value[2] : null;
                 $this->model = $this->model->where($value[0], $value[1], $value3);
             }
+        } elseif ($var1 instanceOf \Closure) {
+            $this->model = $this->model->where($var1);
         }
         
         return $this;
@@ -138,6 +140,8 @@ abstract class BaseRepository implements RepositoryInterface
                 $value3 = isset($value[2]) ? $value[2] : null;
                 $this->model = $this->model->orWhere($value[0], $value[1], $value3);
             }
+        } elseif ($var1 instanceOf \Closure) {
+            $this->model = $this->model->orWhere($var1);
         }
         
         return $this;
@@ -208,5 +212,12 @@ abstract class BaseRepository implements RepositoryInterface
         $this->resetModel();
         
         return $result;
+    }
+    
+    public function whereHas($relatedModel, $query)
+    {
+        $this->model = $this->model->whereHas($relatedModel, $query);
+        
+        return $this;
     }
 }
