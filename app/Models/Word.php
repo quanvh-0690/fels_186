@@ -27,6 +27,8 @@ class Word extends Model {
     
     public function getCorrectAnswerAttribute()
     {
-        return $this->answers()->where('is_correct', config('answer.correct'))->first()->content;
+        $answer = $this->answers()->where('is_correct', config('answer.correct'))->first();
+        
+        return $answer ? $answer->content : trans('word.answer_not_available') ;
     }
 }

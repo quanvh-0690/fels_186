@@ -20,4 +20,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
     Route::get('/','AdminController@index');
     Route::resource('categories', 'CategoryController');
     Route::resource('lessons', 'LessonController');
+    Route::get('words/search', [
+        'as' => 'admin.words.search',
+        'uses' => 'WordController@search',
+    ]);
+    Route::resource('words', 'WordController');
 });

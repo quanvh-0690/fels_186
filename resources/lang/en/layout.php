@@ -15,6 +15,9 @@ return [
         'lessons' => 'Lessons Management',
         'add_lesson' => 'Add Lesson',
         'list_lessons' => 'List Lessons',
+        'add_word' => 'Add Word',
+        'list_words' => 'List Words',
+        'words' => 'Words Management',
     ],
     'actions' => [
         'title' => 'Actions',

@@ -36,5 +36,22 @@ return [
                 'not_found' => 'This lesson does not exist!',
             ],
         ],
+        'words' => [
+            'add' => [
+                'success' => 'Add word success!',
+                'failed' => 'Add word failed!',
+            ],
+            'edit' => [
+                'success' => 'Update word success!',
+                'failed' => 'Update word failed!',
+            ],
+            'delete' => [
+                'success' => 'Delete word success!',
+                'failed' => 'Delete word failed!',
+            ],
+            'show' => [
+                'not_found' => 'This word does not exist!',
+            ],
+        ],
     ],
 ];
