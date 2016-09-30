@@ -82,4 +82,53 @@ class AnswerController extends Controller
             'message' => trans('messages.admin.answers.delete.failed')
         ]);
     }
+    
+    public function edit($wordId, $answerId)
+    {
+        $words = $this->wordRepository->lists('content', 'id');
+        $answer = $this->answerRepository->find($answerId);
+        if ($answer) {
+            return view('admin.answer.edit', compact('answer', 'wordId', 'words'));
+        }
+        
+        return redirect()->back()->with([
+            'status' => 'danger',
+            'message' => trans('messages.admin.words.edit.not_found')
+        ]);
+    }
+    
+    public function update(AnswerRequest $request, $wordId, $answerId)
+    {
+        $data = $request->only('content', 'is_correct');
+        $word = $this->wordRepository->find($wordId);
+        $data['is_correct'] = $request->get('is_correct') == config('answer.correct') ? $request->get('is_correct') : config('answer.wrong');
+        $validNumberAnswer = true;
+        $message = '';
+        if ($word->wrong_answers->count() >= (config('answer.total_answer_each_word') - 1) && !$data['is_correct']) {
+            $validNumberAnswer = false;
+            $message = trans('messages.admin.answers.add.must_have_correct');
+        }
+        
+        if (!$validNumberAnswer) {
+            return response()->json([
+                'status' => 'danger',
+                'message' => $message
+            ]);
+        }
+        
+        $answer = $this->answerRepository->update($data, $answerId);
+        if ($answer) {
+            return response()->json([
+                'status' => 'success',
+                'message' => trans('messages.admin.answers.edit.success'),
+                'action' => $request->get('action'),
+                'redirectUrl' => route('admin.words.show', $wordId)
+            ]);
+        }
+    
+        return response()->json([
+            'status' => 'danger',
+            'message' => trans('messages.admin.answers.edit.failed')
+        ]);
+    }
 }
