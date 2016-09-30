@@ -2,10 +2,14 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    protected $appends = [
+        'register_at',
+    ];
     /**
      * The attributes that are mass assignable.
      *
@@ -36,5 +40,21 @@ class User extends Authenticatable
     public function isAdmin()
     {
         return $this->role == config('user.role.admin');
+    }
+    
+    public function getRegisterAtAttribute()
+    {
+        $created_at = new Carbon($this->attributes['created_at']);
+        $register_at = $created_at->format(config('setting.date_format'));
+        if ($created_at->isToday()) {
+            $register_at = config('setting.today');
+        }
+        
+        if ($created_at->isYesterday()) {
+            $register_at = config('setting.yesterday');
+        }
+        
+        
+        return $register_at;
     }
 }

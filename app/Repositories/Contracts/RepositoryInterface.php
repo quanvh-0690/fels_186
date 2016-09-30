@@ -50,4 +50,8 @@ interface RepositoryInterface {
     public function deleteAll();
     
     public function whereHas($relatedModel, $query);
+    
+    public function limit($limit, $offset = 0);
+    
+    public function with($relatedModel);
 }

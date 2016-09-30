@@ -7,5 +7,8 @@ return [
     ],
     'user' => [
         'index_page_size' => 10,
-    ]
+    ],
+    'date_format' => 'Y-m-d',
+    'today' => 'Today',
+    'yesterday' => 'Yesterday',
 ];
