@@ -1,9 +1,11 @@
 <?php
 namespace App\Providers;
 
+use App\Repositories\Contracts\AnswerRepositoryInterface;
 use App\Repositories\Contracts\CategoryRepositoryInterface;
 use App\Repositories\Contracts\LessonRepositoryInterface;
 use App\Repositories\Contracts\UserRepositoryInterface;
+use App\Repositories\Eloquent\AnswerRepository;
 use App\Repositories\Eloquent\CategoryRepository;
 use App\Repositories\Eloquent\LessonRepository;
 use App\Repositories\Contracts\WordRepositoryInterface;
@@ -24,5 +26,6 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(LessonRepositoryInterface::class, LessonRepository::class);
         $this->app->bind(WordRepositoryInterface::class, WordRepository::class);
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
+        $this->app->bind(AnswerRepositoryInterface::class, AnswerRepository::class);
     }
 }

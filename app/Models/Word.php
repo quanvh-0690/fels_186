@@ -12,7 +12,8 @@ class Word extends Model {
         'content',
     ];
     protected $appends = [
-        'correct_answer',
+        'correct_answers',
+        'wrong_answers',
     ];
 
     public function lesson()
@@ -25,10 +26,13 @@ class Word extends Model {
         return $this->hasMany('App\Models\Answer', 'word_id');
     }
     
-    public function getCorrectAnswerAttribute()
+    public function getCorrectAnswersAttribute()
     {
-        $answer = $this->answers()->where('is_correct', config('answer.correct'))->first();
-        
-        return $answer ? $answer->content : trans('word.answer_not_available') ;
+        return $this->answers()->where('is_correct', config('answer.correct'))->get();
+    }
+    
+    public function getWrongAnswersAttribute()
+    {
+        return $this->answers()->where('is_correct', config('answer.wrong'))->get();
     }
 }
