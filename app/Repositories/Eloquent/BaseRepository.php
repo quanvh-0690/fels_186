@@ -220,4 +220,18 @@ abstract class BaseRepository implements RepositoryInterface
         
         return $this;
     }
+    
+    public function limit($limit, $offset = 0)
+    {
+        $this->model = $this->model->skip($offset)->take($limit);
+        
+        return $this;
+    }
+    
+    public function with($relatedModel)
+    {
+        $this->model = $this->model->with($relatedModel);
+    
+        return $this;
+    }
 }

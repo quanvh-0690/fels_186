@@ -6,4 +6,5 @@ return [
         'content' => 'Content',
         'lesson' => 'Lesson',
     ],
+    'limit_content' => 50,
 ];
