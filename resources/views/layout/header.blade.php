@@ -15,8 +15,16 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }} <b class="caret"></b></a>
                                 <ul class="dropdown-menu animated fadeInUp">
-                                    <li><a href="{{ action('Auth\AuthController@logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i>
-                                            {{ trans('user.logout') }}</a></li>
+                                    <li>
+                                        <a href="{{ action('Auth\AuthController@logout') }}">
+                                            <i class="fa fa-user" aria-hidden="true"></i> {{ trans('user.profile') }}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ action('Auth\AuthController@logout') }}">
+                                            <i class="fa fa-sign-out" aria-hidden="true"></i> {{ trans('user.logout') }}
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                         @else

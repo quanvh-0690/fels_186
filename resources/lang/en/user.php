@@ -37,4 +37,5 @@ return [
     'total_lessons_learned' => 'Total Lessons Learned',
     'details' => 'User Details',
     'activity' => 'Activity',
+    'profile' => 'Profile',
 ];
