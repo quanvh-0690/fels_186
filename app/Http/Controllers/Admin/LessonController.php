@@ -4,20 +4,28 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LessonRequest;
+use App\Repositories\Contracts\AnswerRepositoryInterface;
 use App\Repositories\Contracts\CategoryRepositoryInterface;
 use App\Repositories\Contracts\LessonRepositoryInterface;
+use App\Repositories\Contracts\WordRepositoryInterface;
 use Illuminate\Http\Request;
 
 class LessonController extends Controller
 {
     private $lessonRepository;
     private $categoryRepository;
+    private $wordRepository;
+    private $answerRepository;
     public function __construct(
         LessonRepositoryInterface $lessonRepository,
-        CategoryRepositoryInterface $categoryRepository
+        CategoryRepositoryInterface $categoryRepository,
+        WordRepositoryInterface $wordRepository,
+        AnswerRepositoryInterface $answerRepository
     ) {
         $this->lessonRepository = $lessonRepository;
         $this->categoryRepository = $categoryRepository;
+        $this->wordRepository = $wordRepository;
+        $this->answerRepository = $answerRepository;
     }
     
     /**
@@ -134,17 +142,26 @@ class LessonController extends Controller
     
     public function destroy($id)
     {
-        if ($this->lessonRepository->delete($id)) {
+        try {
+            DB::beginTransaction();
+            $this->lessonRepository->delete($id);
+            $wordIds = $this->wordRepository->where('lesson_id', $id)->lists('id');
+            $this->answerRepository->whereIn('word_id', $wordIds)->deleteAll();
+            $this->wordRepository->delete($wordIds);
+            DB::commit();
+            
             return redirect()->route('admin.lessons.index')->with([
                 'status' => 'success',
                 'message' => trans('messages.admin.lessons.delete.success')
             ]);
+        } catch (\Exception $e) {
+            DB::rollback();
+            
+            return redirect()->back()->with([
+                'status' => 'danger',
+                'message' => trans('messages.admin.lessons.delete.failed')
+            ]);
         }
-        
-        return redirect()->back()->with([
-            'status' => 'danger',
-            'message' => trans('messages.admin.lessons.delete.failed')
-        ]);
     }
     
     private function getCategoriesForSelectbox()

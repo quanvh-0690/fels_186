@@ -3,19 +3,24 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\WordRequest;
+use App\Repositories\Contracts\AnswerRepositoryInterface;
 use App\Repositories\Contracts\LessonRepositoryInterface;
 use App\Repositories\Contracts\WordRepositoryInterface;
+use Illuminate\Support\Facades\DB;
 
 class WordController extends Controller
 {
     private $wordRepository;
     private $lessonRepository;
+    private $answerRepository;
     public function __construct(
         WordRepositoryInterface $wordRepository,
-        LessonRepositoryInterface $lessonRepository
+        LessonRepositoryInterface $lessonRepository,
+        AnswerRepositoryInterface $answerRepository
     ) {
         $this->wordRepository = $wordRepository;
         $this->lessonRepository = $lessonRepository;
+        $this->answerRepository = $answerRepository;
     }
     
     /**
@@ -134,17 +139,25 @@ class WordController extends Controller
      */
     public function destroy($id)
     {
-        if ($this->wordRepository->delete($id)) {
+        try {
+            DB::beginTransaction();
+            $this->wordRepository->delete($id);
+            $this->answerRepository->where('word_id', $id)->deleteAll();
+            
+            DB::commit();
+    
             return redirect()->route('admin.words.index')->with([
                 'status' => 'success',
                 'message' => trans('messages.admin.words.delete.success')
             ]);
-        }
+        } catch (\Exception $e) {
+            DB::rollback();
     
-        return redirect()->back()->with([
-            'status' => 'danger',
-            'message' => trans('messages.admin.words.delete.failed')
-        ]);
+            return redirect()->back()->with([
+                'status' => 'danger',
+                'message' => trans('messages.admin.words.delete.failed')
+            ]);
+        }
     }
     
     public function search()

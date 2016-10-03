@@ -3,14 +3,29 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
+use App\Repositories\Contracts\AnswerRepositoryInterface;
 use App\Repositories\Contracts\CategoryRepositoryInterface;
+use App\Repositories\Contracts\LessonRepositoryInterface;
+use App\Repositories\Contracts\WordRepositoryInterface;
+use Illuminate\Support\Facades\DB;
+use Exception;
 
 class CategoryController extends Controller
 {
     private $categoryRepository;
-    public function __construct(CategoryRepositoryInterface $categoryRepository)
-    {
+    private $lessonRepository;
+    private $wordRepository;
+    private $answerRepository;
+    public function __construct(
+        CategoryRepositoryInterface $categoryRepository,
+        LessonRepositoryInterface $lessonRepository,
+        WordRepositoryInterface $wordRepository,
+        AnswerRepositoryInterface $answerRepository
+    ) {
         $this->categoryRepository = $categoryRepository;
+        $this->lessonRepository = $lessonRepository;
+        $this->wordRepository = $wordRepository;
+        $this->answerRepository = $answerRepository;
     }
     
     public function create()
@@ -73,17 +88,37 @@ class CategoryController extends Controller
     
     public function destroy($id)
     {
-        if ($this->categoryRepository->delete($id)) {
+        try{
+            DB::beginTransaction();
+            $category = $this->categoryRepository->find($id);
+            if (!$category->parent_id) {
+                $categoryIds = $this->categoryRepository->where('parent_id', $id)->lists('id');
+                $lessonIds = $this->lessonRepository->whereIn('category_id', $categoryIds)->lists('id');
+            } else {
+                $lessonIds = $this->lessonRepository->where('category_id', $id)->lists('id');
+                $categoryIds = $id;
+            }
+            
+            $wordIds = $this->wordRepository->whereIn('lesson_id', $lessonIds)->lists('id');
+            $this->answerRepository->whereIn('word_id', $wordIds)->deleteAll();
+            $this->wordRepository->delete($wordIds);
+            $this->lessonRepository->delete($lessonIds);
+            $this->categoryRepository->delete($categoryIds);
+            DB::commit();
+            
             return redirect()->route('admin.categories.index')->with([
                 'status' => 'success',
                 'message' => trans('messages.admin.categories.delete.success')
             ]);
+        } catch (Exception $e) {
+            DB::rollback();
+            
+            return redirect()->back()->with([
+                'status' => 'danger',
+                'message' => trans('messages.admin.categories.delete.failed')
+            ]);
         }
-    
-        return redirect()->back()->with([
-            'status' => 'danger',
-            'message' => trans('messages.admin.categories.delete.failed')
-        ]);
+        
     }
     
     public function show($id)

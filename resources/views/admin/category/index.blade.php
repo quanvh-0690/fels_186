@@ -28,7 +28,6 @@
                                         <td>{{ $category->parentcategory->name or '' }}</td>
                                         <td>{{ $category->lessons_count }}</td>
                                         <td>
-                                            <button class="btn btn-success btn-sm"><i class="fa fa-plus"></i> {{ trans('layout.actions.add', ['name' => 'Lesson']) }}</button>
                                             <a href="{{ route('admin.categories.show', $category->id) }}" class="btn btn-warning btn-sm"><i class="glyphicon glyphicon-eye-open"></i> {{ trans('layout.actions.view') }}</a>
                                             <a href="{{ route('admin.categories.edit', $category->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i> {{ trans('layout.actions.edit') }}</a>
                                             <button class="btn btn-danger btn-sm btn-delete" data-id="{{ $category->id }}"><i class="fa fa-trash-o"></i> {{ trans('layout.actions.delete') }}</button>
